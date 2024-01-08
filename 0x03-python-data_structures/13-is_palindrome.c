@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include "lists.h"
 /**
@@ -5,7 +6,7 @@
  * @head: head of the second half
  * Return: no return
  */
-listint_t *reverse(listint_t *head)
+void reverse(listint_t *head)
 {
 	listint_t *prev = NULL;
 	listint_t *current = head;
@@ -18,7 +19,8 @@ listint_t *reverse(listint_t *head)
 		prev = current;
 		current = next;
 	}
-	return (prev);
+	
+	head = prev;
 }
 /**
  * compare - compares each int of the list
@@ -51,11 +53,11 @@ int is_palindrome(listint_t **head)
 	listint_t *fast = *head;
 	listint_t *second_half = NULL;
 	listint_t *prev_of_slow = *head;
-	listint_t *mid = NULL
-	int is_palindrome = 1;
+	listint_t *mid = NULL;
+	int is_p = 1;
 
-if (*head != NULL && (*head)->next != NULL)
-{
+	if (*head != NULL && (*head)->next != NULL)
+	{
 	while (fast != NULL && fast->next != NULL)
 	{
 		fast = fast->next->next;
@@ -67,15 +69,15 @@ if (*head != NULL && (*head)->next != NULL)
 		mid = slow;
 		slow = slow->next;
 	}
-	second_half = reverse(slow);
+	reverse(slow);
 	prev_of_slow->next = second_half;
-	is_palindrome = compare(*head, second_half);
-	second_half = reverse(second_half);
+	is_p = compare(*head, second_half);
+	reverse(second_half);
 	prev_of_slow->next = mid;
 	if (mid != NULL)
 		mid->next = second_half;
 	else
 		prev_of_slow->next = second_half;
-}
-return (is_palindrome);
+	}
+	return (is_p);
 }
