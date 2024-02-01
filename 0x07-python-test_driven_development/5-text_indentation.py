@@ -24,7 +24,7 @@ def text_indentation(text):
     if type(text) is not str:
         raise TypeError("text must be a string")
 
-    s = text.copy()
+    s = text[:]
 
     for d in ".?:":
         list_text = s.split(d)
