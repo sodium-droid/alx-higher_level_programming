@@ -17,11 +17,11 @@ class LockedClass:
     """
     __slots__ = ["first_name"]
 
-    def __init__(self, first_name):
+    def __init__(self):
         """
         Method to initialize objects
         Args:
             first_name: name of Individual (Object)
 
         """
-        self.first_name = first_name
+        pass
